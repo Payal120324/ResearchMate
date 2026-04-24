@@ -34,6 +34,11 @@ function Auth({ setUser, isLogin: isLoginProp = true }) {
   const handleGoogleLogin = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
+      options: {
+        queryParams: {
+          prompt: "select_account",
+        },
+      },
     });
   };
 

@@ -20,7 +20,8 @@ function App() {
     const { data: listener } = supabase.auth.onAuthStateChange(
       (event, session) => {
         setUser(session?.user || null);
-        if (event === "SIGNED_IN") {
+        const path = window.location.pathname;
+        if (event === "SIGNED_IN" && (path === "/login" || path === "/signup" || path === "/auth")) {
           navigate("/");
         }
       }
